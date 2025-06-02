@@ -6,9 +6,13 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './dev.sqlite3'
+      database: 'MineSweeper',
+      host: 'localhost',
+      port: '5432',
+      user: 'username',
+      password: 'password'
     }
   },
 
