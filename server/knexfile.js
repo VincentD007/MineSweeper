@@ -8,10 +8,10 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      database: 'MineSweeper',
-      host: 'localhost',
+      database: 'postgres',
+      host: '',
       port: '5432',
-      user: 'username',
+      user: 'vincent',
       password: 'password'
     }
   },

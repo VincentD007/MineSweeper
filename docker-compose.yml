@@ -1,7 +1,38 @@
 services:
-  app:
-
-  server:
-
-  db:
+  frontend:
+    build: ./app
+    container_name: minesweeper
+    volumes:
+      - ${PWD}/app:/app
+    ports:
+      - 5173:5173
+    depends_on:
+      - backend
     
+  backend:
+    build: ./server
+    container_name: minesweeperapi
+    ports:
+      - 8080:8080
+    volumes:
+      - ${PWD}/server:/server
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - database
+
+  database:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: vincent
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    container_name: minesweeperdb
+    volumes:
+     - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+
+volumes:
+  db_data:
